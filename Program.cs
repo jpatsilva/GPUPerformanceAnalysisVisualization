@@ -1,6 +1,18 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using GPU_Performance_Analysis_Visualization;
 
-app.MapGet("/", () => "Hello World!");
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        ProcessData pd = new ProcessData();
+        pd.ProcessDataObject();
+        pd.printDataObject();
 
-app.Run();
+        //var builder = WebApplication.CreateBuilder(args);
+        //var app = builder.Build();
+
+        //app.MapGet("/", () => "Hello World!");
+
+        //app.Run();
+    }
+}
