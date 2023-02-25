@@ -1,9 +1,15 @@
 ﻿using System;
+using System.IO;
 
 namespace GPU_Performance_Analysis_Visualization
 {
+    
+
     public class DataObject
     {
+        public StreamWriter sw = new StreamWriter("/Users/patricksilva/Projects/GPUPerformanceAnalysisVisualization/output/out.txt");
+        public StreamWriter sw1 = new StreamWriter("/Users/patricksilva/Projects/GPUPerformanceAnalysisVisualization/output/out1.txt");
+
         public string? dispatch { get; set; }
         public string? gpuID { get; set; }
         public string? queueID { get; set; }
@@ -33,7 +39,7 @@ namespace GPU_Performance_Analysis_Visualization
         public void print()
         {
 
-            Console.WriteLine("Dispatch: " + this.dispatch);
+            sw1.WriteLine("Dispatch: " + this.dispatch);
             Console.WriteLine("GPU ID: " + this.gpuID);
             Console.WriteLine("Queue ID: " + this.queueID);
             Console.WriteLine("Queue Index: " + this.queueIndex);
