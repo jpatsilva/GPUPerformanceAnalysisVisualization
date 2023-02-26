@@ -6,7 +6,7 @@ internal class Program
     {
         ProcessData pd = new ProcessData();
         pd.ProcessDataObject();
-        pd.printDataObject();
+        pd.WriteDataObjectToFile();
 
         //var builder = WebApplication.CreateBuilder(args);
         //var app = builder.Build();

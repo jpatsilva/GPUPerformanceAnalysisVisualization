@@ -47,7 +47,7 @@ namespace GPU_Performance_Analysis_Visualization
         {
             try
             {
-                string text = System.IO.File.ReadAllText("/Users/patricksilva/projects/GPUPerformanceAnalysisVisualization/data/288440_results.txt");
+                string text = System.IO.File.ReadAllText("./data/288440_results.txt");
                 return text;
             }
             catch (Exception e)
@@ -57,9 +57,11 @@ namespace GPU_Performance_Analysis_Visualization
             return "Error";
         }
 
-        public void printDataObject()
+        public void WriteDataObjectToFile()
         {
-            dataObj.print();
+            dataObj.listDataObjectProperties();
+            dataObj.ProcessProperties();
+            dataObj.writeToFile();
         }
     }
 }

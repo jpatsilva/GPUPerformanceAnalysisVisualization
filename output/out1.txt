@@ -1,0 +1,30 @@
+Dispatch: dispatch[786]
+GPU ID:  gpu_id(0)
+Queue ID:  queue_id(1)
+Queue Index:  queue_index(0)
+Process ID:  pid(288440)
+Thread ID:  tid(0)
+GRD:  grd(0)
+WGR:  wgr(0)
+LDS:  lds(0)
+SCR:  scr(0)
+Arch VGPR:  arch_vgpr(0)
+ACCUM VGPR:  accum_vgpr(0)
+SGPR:  sgpr(0)
+Wave Size:  wave_size(0)
+SIG:  sig(0)
+OBJ:  obj(139687444669952)
+Kernel Name:  kernel-name("vectoradd_float")
+Start Time:  start_time(882263809991743)
+End Time:  end_time(882263810046622)
+
+SQ Wait Any:  SQ_WAIT_ANY (18874368.000000)
+
+SQ Wave Cycles:  SQ_WAVE_CYCLES (32768.000000)
+
+SQ Cycles:  SQ_CYCLES (437504.000000)
+
+GRBM Count:  GRBM_COUNT (109376.000000)
+
+GRBM GUI Active:  GRBM_GUI_ACTIVE (109376.000000)
+dispatch[826]

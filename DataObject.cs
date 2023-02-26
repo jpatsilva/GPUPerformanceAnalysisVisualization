@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace GPU_Performance_Analysis_Visualization
 {
@@ -7,8 +9,9 @@ namespace GPU_Performance_Analysis_Visualization
 
     public class DataObject
     {
-        public StreamWriter sw = new StreamWriter("/Users/patricksilva/Projects/GPUPerformanceAnalysisVisualization/output/out.txt");
-        public StreamWriter sw1 = new StreamWriter("/Users/patricksilva/Projects/GPUPerformanceAnalysisVisualization/output/out1.txt");
+        //string outFile = "./output/out.txt";
+        string outFile1 = "./output/out1.txt";
+        List<string> dataObjectProperties = new List<string>();
 
         public string? dispatch { get; set; }
         public string? gpuID { get; set; }
@@ -36,34 +39,55 @@ namespace GPU_Performance_Analysis_Visualization
         public string? GRBMGUIActive { get; set; }
 
 
-        public void print()
+        public void listDataObjectProperties()
         {
+            dataObjectProperties.Add("Dispatch: " + this.dispatch);
+            dataObjectProperties.Add("GPU ID: " + gpuID);
+            dataObjectProperties.Add("Queue ID: " + this.queueID);
+            dataObjectProperties.Add("Queue Index: " + this.queueIndex);
+            dataObjectProperties.Add("Process ID: " + this.processID);
+            dataObjectProperties.Add("Thread ID: " + this.threadID);
+            dataObjectProperties.Add("GRD: " + this.grd);
+            dataObjectProperties.Add("WGR: " + this.wgr);
+            dataObjectProperties.Add("LDS: " + this.lds);
+            dataObjectProperties.Add("SCR: " + this.scr);
+            dataObjectProperties.Add("Arch VGPR: " + this.archVgpr);
+            dataObjectProperties.Add("ACCUM VGPR: " + this.accumVgpr);
+            dataObjectProperties.Add("SGPR: " + this.sgpr);
+            dataObjectProperties.Add("Wave Size: " + this.waveSize);
+            dataObjectProperties.Add("SIG: " + this.sig);
+            dataObjectProperties.Add("OBJ: " + this.obj);
+            dataObjectProperties.Add("Kernel Name: " + this.kernelName);
+            dataObjectProperties.Add("Start Time: " + this.startTime);
+            dataObjectProperties.Add("End Time: " + this.endTime);
+            dataObjectProperties.Add("SQ Wait Any: " + this.sqWaitAny);
+            dataObjectProperties.Add("SQ Wave Cycles: " + this.sqWaveCycles);
+            dataObjectProperties.Add("SQ Cycles: " + this.sqCycles);
+            dataObjectProperties.Add("GRBM Count: " + this.GRBMCount);
+            dataObjectProperties.Add("GRBM GUI Active: " + this.GRBMGUIActive);
+        }
 
-            sw1.WriteLine("Dispatch: " + this.dispatch);
-            Console.WriteLine("GPU ID: " + this.gpuID);
-            Console.WriteLine("Queue ID: " + this.queueID);
-            Console.WriteLine("Queue Index: " + this.queueIndex);
-            Console.WriteLine("Process ID: " + this.processID);
-            Console.WriteLine("Thread ID: " + this.threadID);
-            Console.WriteLine("GRD: " + this.grd);
-            Console.WriteLine("WGR: " + this.wgr);
-            Console.WriteLine("LDS: " + this.lds);
-            Console.WriteLine("SCR: " + this.scr);
-            Console.WriteLine("Arch VGPR: " + this.archVgpr);
-            Console.WriteLine("ACCUM VGPR: " + this.accumVgpr);
-            Console.WriteLine("SGPR: " + this.sgpr);
-            Console.WriteLine("Wave Size: " + this.waveSize);
-            Console.WriteLine("SIG: " + this.sig);
-            Console.WriteLine("OBJ: " + this.obj);
-            Console.WriteLine("Kernel Name: " + this.kernelName);
-            Console.WriteLine("Start Time: " + this.startTime);
-            Console.WriteLine("End Time: " + this.endTime);
-            Console.WriteLine("SQ Wait Any: " + this.sqWaitAny);
-            Console.WriteLine("SQ Wave Cycles: " + this.sqWaveCycles);
-            Console.WriteLine("SQ Cycles: " + this.sqCycles);
-            Console.WriteLine("GRBM Count: " + this.GRBMCount);
-            Console.WriteLine("GRBM GUI Active: " + this.GRBMGUIActive);
+        public void writeToFile()
+        {
+            File.WriteAllLines(outFile1, dataObjectProperties);
+        }
 
+        public void ProcessProperties()
+        {
+            int start = 0;
+            int end = 0;
+            int length = 0;
+            string dispatchValue = "";
+
+            if(dispatch != null)
+            {
+                start = this.dispatch.IndexOf("[");
+                end = this.dispatch.IndexOf("]");
+                length = end - start - 1;
+                dispatchValue = dispatch.Substring(start + 1, length);
+            }
+            
+            
         }
     }
 }
