@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
@@ -7,13 +8,12 @@ namespace GPU_Performance_Analysis_Visualization
     public class ProcessData
     {
         DataObject dataObj = new DataObject();
+        string rawPropertyFile = "./output/raw.txt";
+        string valuePropertyFile = "./output/values.txt";
 
         public void ProcessDataObject()
         {
-            
-
             string data = OpenRead();
-
             string[] parsedData = data.Split(',');
 
             dataObj.dispatch = parsedData[0];
@@ -60,9 +60,9 @@ namespace GPU_Performance_Analysis_Visualization
         public void WriteDataObjectToFile()
         {
             dataObj.listDataObjectProperties();
-            dataObj.ProcessProperties();
-            dataObj.writeToFile();
+            dataObj.ParseProperties();
+            dataObj.WriteToFile(rawPropertyFile, dataObj.dataObjectProperties);
+            dataObj.WriteToFile(valuePropertyFile, dataObj.dataObjectValues);
         }
     }
 }
-

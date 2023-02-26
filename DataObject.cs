@@ -10,8 +10,9 @@ namespace GPU_Performance_Analysis_Visualization
     public class DataObject
     {
         //string outFile = "./output/out.txt";
-        string outFile1 = "./output/out1.txt";
-        List<string> dataObjectProperties = new List<string>();
+        //string outFile1 = "./output/out1.txt";
+        public List<string> dataObjectProperties = new List<string>();
+        public List<string> dataObjectValues = new List<string>();
 
         public string? dispatch { get; set; }
         public string? gpuID { get; set; }
@@ -37,6 +38,31 @@ namespace GPU_Performance_Analysis_Visualization
         public string? sqCycles { get; set; }
         public string? GRBMCount { get; set; }
         public string? GRBMGUIActive { get; set; }
+
+        public int dispatchValue { get; set; }
+        public int gpuIDValue { get; set; }
+        public int queueIDValue { get; set; }
+        public int queueIndexValue { get; set; }
+        public int processIDValue { get; set; }
+        public int threadIDValue { get; set; }
+        public int grdValue { get; set; }
+        public int wgrValue { get; set; }
+        public int ldsValue { get; set; }
+        public int scrValue { get; set; }
+        public int archVgprValue { get; set; }
+        public int accumVgprValue { get; set; }
+        public int sgprValue { get; set; }
+        public int waveSizeValue { get; set; }
+        public int sigValue { get; set; }
+        public int objValue { get; set; }
+        public string? kernelNameValue { get; set; }
+        public int startTimeValue { get; set; }
+        public int endTimeValue { get; set; }
+        public int sqWaitAnyValue { get; set; }
+        public int sqWaveCyclesValue { get; set; }
+        public int sqCyclesValue { get; set; }
+        public int GRBMCountValue { get; set; }
+        public int GRBMGUIActiveValue { get; set; }
 
 
         public void listDataObjectProperties()
@@ -67,27 +93,37 @@ namespace GPU_Performance_Analysis_Visualization
             dataObjectProperties.Add("GRBM GUI Active: " + this.GRBMGUIActive);
         }
 
-        public void writeToFile()
+        public void WriteToFile(string file, List<string> list)
         {
-            File.WriteAllLines(outFile1, dataObjectProperties);
+            File.WriteAllLines(file, list);
         }
 
-        public void ProcessProperties()
+        public void ParseProperties()
+        {
+            string item = "";
+            foreach(string property in dataObjectProperties)
+            {
+                item = ProcessProperty(property);
+                dataObjectValues.Add(item);
+            }
+        }
+
+        public string ProcessProperty(string item)
         {
             int start = 0;
             int end = 0;
             int length = 0;
-            string dispatchValue = "";
+            string value = "";
 
-            if(dispatch != null)
+            if(item != null)
             {
-                start = this.dispatch.IndexOf("[");
-                end = this.dispatch.IndexOf("]");
+                start = item.IndexOf("(");
+                end = item.IndexOf(")");
                 length = end - start - 1;
-                dispatchValue = dispatch.Substring(start + 1, length);
+                value = item.Substring(start + 1, length);
             }
-            
-            
+
+            return value;
         }
     }
 }
