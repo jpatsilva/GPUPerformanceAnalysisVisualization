@@ -92,11 +92,6 @@ namespace GPU_Performance_Analysis_Visualization
             dataObjectProperties.Add("GRBM Count: " + this.GRBMCount);
             dataObjectProperties.Add("GRBM GUI Active: " + this.GRBMGUIActive);
         }
-
-        public void WriteToFile(string file)
-        {
-            //File.WriteAllLines(file, this.dispatch);
-        }
     }
 }
 
