@@ -10,7 +10,6 @@ namespace GPU_Performance_Analysis_Visualization
         //string rawPropertyFile   = "./output/raw.txt";
         //string valuePropertyFile = "./output/values.txt";
 
-        int recordSize     = 24;
         int recordCount    = 0;
         int linesPerRecord = 6;
 
