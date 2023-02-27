@@ -54,15 +54,15 @@ namespace GPU_Performance_Analysis_Visualization
         public int sgprValue { get; set; }
         public int waveSizeValue { get; set; }
         public int sigValue { get; set; }
-        public int objValue { get; set; }
+        public long objValue { get; set; }
         public string? kernelNameValue { get; set; }
-        public int startTimeValue { get; set; }
-        public int endTimeValue { get; set; }
-        public int sqWaitAnyValue { get; set; }
-        public int sqWaveCyclesValue { get; set; }
-        public int sqCyclesValue { get; set; }
-        public int GRBMCountValue { get; set; }
-        public int GRBMGUIActiveValue { get; set; }
+        public long startTimeValue { get; set; }
+        public long endTimeValue { get; set; }
+        public decimal sqWaitAnyValue { get; set; }
+        public decimal sqWaveCyclesValue { get; set; }
+        public decimal sqCyclesValue { get; set; }
+        public decimal GRBMCountValue { get; set; }
+        public decimal GRBMGUIActiveValue { get; set; }
 
 
         public void listDataObjectProperties()
@@ -93,37 +93,9 @@ namespace GPU_Performance_Analysis_Visualization
             dataObjectProperties.Add("GRBM GUI Active: " + this.GRBMGUIActive);
         }
 
-        public void WriteToFile(string file, List<string> list)
+        public void WriteToFile(string file)
         {
-            File.WriteAllLines(file, list);
-        }
-
-        public void ParseProperties()
-        {
-            string item = "";
-            foreach(string property in dataObjectProperties)
-            {
-                item = ProcessProperty(property);
-                dataObjectValues.Add(item);
-            }
-        }
-
-        public string ProcessProperty(string item)
-        {
-            int start = 0;
-            int end = 0;
-            int length = 0;
-            string value = "";
-
-            if(item != null)
-            {
-                start = item.IndexOf("(");
-                end = item.IndexOf(")");
-                length = end - start - 1;
-                value = item.Substring(start + 1, length);
-            }
-
-            return value;
+            //File.WriteAllLines(file, this.dispatch);
         }
     }
 }
